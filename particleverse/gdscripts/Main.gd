@@ -8,12 +8,15 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#pause_shit()
+	#pause everything immedietly
+	pause_shit()
 	pass # Replace with function body.
-	
+
+#gets all nodes and pauses them
 func pause_shit():
 	get_tree().paused = true
 	
+#gets all nodes and unpauses them
 func unpause_shit():
 	get_tree().paused = false
 

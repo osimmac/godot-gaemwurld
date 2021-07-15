@@ -1,0 +1,1 @@
+/home/mac/Documents/GameProjects/ParticleVerseSource/libparticleverse/target/x86_64-pc-windows-gnu/debug/ParticleVerse.dll: /home/mac/Documents/GameProjects/ParticleVerseSource/libparticleverse/src/lib.rs /home/mac/Documents/GameProjects/ParticleVerseSource/libparticleverse/src/spacemagic.rs

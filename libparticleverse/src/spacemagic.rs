@@ -65,9 +65,6 @@ struct ShapeRID
     rid: Rid
 }
 
-
-
-
 /// The SpaceMagic "class"
 //every class to be used in godot needs one of these structs
 #[derive(NativeClass)]
@@ -107,9 +104,6 @@ impl SpaceMagic
         let ecs_schedule = Schedule::builder()
         .add_system(sweet_gravity_system())
         .build();
-
-
-
 
         SpaceMagic
         {
@@ -307,11 +301,6 @@ impl SpaceMagic
         _owner.update();
 
         
-
-    
-
-
-        
     }
 
 
@@ -407,7 +396,6 @@ fn add_particle_to_godot_world(physics_server:&Physics2DServer, _owner: TRef<Nod
       
 }
 
-    
 
 //this function gets all the positions of bodies currently in the world and adds them to a list.
 //used in sweet_gravity system, which runs once per entity. each entity calculates force of gravity to all other particle posistions.
@@ -445,16 +433,15 @@ fn sweet_gravity(positon: &CurrentPosition,body: &BodyRID, #[resource] delta: &f
             //calculate force of gravity on every other particle and add it to a vector.
             let dvec = pos - other_pos;
 
-            if  dvec.length() < 5.0 && dvec.length() > 0.1 
+            if  dvec.length() < 10.0 && dvec.length() > 0.000001 
             {   
-                let f = (E)/ dvec.length().powf(2.0);
+                let f = E/ dvec.length().powf(2.0);
                 otherforce+= dvec.normalize().mul(f);
-                continue 'papi;
 
             }
-            else if dvec.length() > 0.2
+            if dvec.length() > 0.2
             {
-                let f = (G)/ dvec.length().powf(2.0);
+                let f = G/ dvec.length().powf(2.0);
                 force-= dvec.normalize().mul(f);
                 continue 'papi;
                 
@@ -465,5 +452,4 @@ fn sweet_gravity(positon: &CurrentPosition,body: &BodyRID, #[resource] delta: &f
     }
     //apply sum of forces to body
     physics_server.body_apply_central_impulse(body.rid, (otherforce+force).mul(*delta));
-
 }    

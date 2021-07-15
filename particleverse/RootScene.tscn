@@ -34,6 +34,7 @@ __meta__ = {
 autostart = true
 
 [node name="Node2D" type="Node2D" parent="."]
+pause_mode = 1
 script = ExtResource( 1 )
 
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D/Label" method="_on_Timer_timeout"]
